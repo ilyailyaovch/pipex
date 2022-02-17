@@ -12,10 +12,10 @@ Your program will be executed as follows:
 It must take 4 arguments:
 * file1 and file2 are file names.
 * cmd1 and cmd2 are shell commands with their parameters.
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 It must behave exactly the same as the shell command below:
   ```sh
    $> < file1 cmd1 | cmd2 > file2
   ```
+<p align="right">(<a href="#top">back to top</a>)</p>
