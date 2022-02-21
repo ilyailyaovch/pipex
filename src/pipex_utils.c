@@ -6,7 +6,7 @@
 /*   By: pleoma <pleoma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 12:51:45 by pleoma            #+#    #+#             */
-/*   Updated: 2022/02/21 11:46:05 by pleoma           ###   ########.fr       */
+/*   Updated: 2022/02/21 15:26:14 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ char	*ft_find_path(char *cmd, char **envp)
 	int		i;
 
 	i = 0;
-	while (ft_strnstr(envp[i], "PATH=", 5) == 0)
+	if (ft_strnstr(cmd, "/", 1) != NULL) //
+		return (cmd);					//
+	while (envp[i] && ft_strnstr(envp[i], "PATH=", 5) == 0) //
 		i++;
 	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
@@ -60,7 +62,7 @@ char	*ft_find_path(char *cmd, char **envp)
 			return (path);
 		i++;
 	}
-	return (0);
+	return (cmd); //
 }
 
 void	ft_execute(char *argv, char **envp)

@@ -6,7 +6,7 @@
 /*   By: pleoma <pleoma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:50:16 by pleoma            #+#    #+#             */
-/*   Updated: 2022/02/21 11:37:22 by pleoma           ###   ########.fr       */
+/*   Updated: 2022/02/21 16:22:45 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PIPEX_H
 
 # include <unistd.h>
-# include <stdio.h>
-# include <stdbool.h>
 # include <stdlib.h>
 # include <string.h> 
 # include <fcntl.h>

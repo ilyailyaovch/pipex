@@ -6,7 +6,7 @@
 #    By: pleoma <pleoma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/17 13:50:23 by pleoma            #+#    #+#              #
-#    Updated: 2022/02/20 17:01:16 by pleoma           ###   ########.fr        #
+#    Updated: 2022/02/21 15:26:49 by pleoma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC	=	src/pipex.c\
 		src/lib_1.c\
 		src/lib_2.c\
 
-.c.o:
+.c.o: $(HEADER)
 	@$(CC) $(FLAGS) -c $< -o $@
 	@echo "Compiling $@"
 
@@ -42,4 +42,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
