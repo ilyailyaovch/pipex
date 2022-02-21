@@ -6,22 +6,36 @@
 /*   By: pleoma <pleoma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 12:51:45 by pleoma            #+#    #+#             */
-/*   Updated: 2022/02/20 19:46:24 by pleoma           ###   ########.fr       */
+/*   Updated: 2022/02/21 11:46:05 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
 void	ft_error(int exit_code, char *argv)
-{	
+{
 	if (exit_code == -1)
 	{
-		ft_putstr_fd("command not found : ", 2);
+		ft_putstr_fd("command not found: ", 2);
 		ft_putstr_fd(argv, 2);
-		exit(1);
+		ft_putstr_fd("\n", 2);
+		exit(EXIT_FAILURE);
 	}
-	perror("Error");
+	ft_putstr_fd(strerror(exit_code), 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(argv, 2);
+	ft_putstr_fd("\n", 2);
 	exit(EXIT_FAILURE);
+}
+
+void	ft_clear(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
 }
 
 char	*ft_find_path(char *cmd, char **envp)
@@ -39,6 +53,7 @@ char	*ft_find_path(char *cmd, char **envp)
 	while (paths[i])
 	{
 		path_without_cmd = ft_strjoin(paths[i], "/");
+		free(paths[i]);
 		path = ft_strjoin(path_without_cmd, cmd);
 		free(path_without_cmd);
 		if (access(path, F_OK) == 0)
@@ -57,16 +72,8 @@ void	ft_execute(char *argv, char **envp)
 	i = 0;
 	cmd = ft_split(argv, ' ');
 	path = ft_find_path(cmd[0], envp);
-	// if (!path) //
-	// {
-	// 	while (cmd[i])
-	// 	{
-	// 		free (cmd[i]);
-	// 		i++;
-	// 	}
-	// 	free (cmd);
-	// 	ft_error (errno);
-	// }
 	if (execve(path, cmd, envp) == -1)
-		ft_error (-1);
+		ft_error (-1, argv);
+	ft_clear(cmd);
+	free(path);
 }

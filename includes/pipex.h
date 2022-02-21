@@ -6,7 +6,7 @@
 /*   By: pleoma <pleoma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:50:16 by pleoma            #+#    #+#             */
-/*   Updated: 2022/02/20 19:46:37 by pleoma           ###   ########.fr       */
+/*   Updated: 2022/02/21 11:37:22 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <stdlib.h>
+# include <string.h> 
 # include <fcntl.h>
 # include <errno.h>
 
@@ -32,6 +33,7 @@ char	**ft_split(char const *s, char c);
 
 /*	pipex_utils.c */
 void	ft_error(int exit_code, char *argv);
+void	ft_clear(char **str);
 char	*ft_find_path(char *cmd, char **envp);
 void	ft_execute(char *argv, char **envp);
 
