@@ -6,7 +6,7 @@
 /*   By: pleoma <pleoma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 12:51:45 by pleoma            #+#    #+#             */
-/*   Updated: 2022/02/21 15:26:14 by pleoma           ###   ########.fr       */
+/*   Updated: 2022/02/21 19:10:51 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,25 @@ char	*ft_find_path(char *cmd, char **envp)
 	int		i;
 
 	i = 0;
-	if (ft_strnstr(cmd, "/", 1) != NULL) //
-		return (cmd);					//
-	while (envp[i] && ft_strnstr(envp[i], "PATH=", 5) == 0) //
+	if (ft_strnstr(cmd, "/", 1) != NULL)
+		return (cmd);
+	while (envp[i] && ft_strnstr(envp[i], "PATH=", 5) == 0)
 		i++;
 	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
 	while (paths[i])
 	{
 		path_without_cmd = ft_strjoin(paths[i], "/");
-		free(paths[i]);
 		path = ft_strjoin(path_without_cmd, cmd);
 		free(path_without_cmd);
-		if (access(path, F_OK) == 0)
+		if (access(path, F_OK | X_OK) == 0)
+		{
+			ft_clear(paths);
 			return (path);
+		}
 		i++;
 	}
-	return (cmd); //
+	return (cmd);
 }
 
 void	ft_execute(char *argv, char **envp)
@@ -76,6 +78,6 @@ void	ft_execute(char *argv, char **envp)
 	path = ft_find_path(cmd[0], envp);
 	if (execve(path, cmd, envp) == -1)
 		ft_error (-1, argv);
-	ft_clear(cmd);
 	free(path);
+	ft_clear(cmd);
 }

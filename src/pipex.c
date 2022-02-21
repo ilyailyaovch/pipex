@@ -6,7 +6,7 @@
 /*   By: pleoma <pleoma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:50:21 by pleoma            #+#    #+#             */
-/*   Updated: 2022/02/21 11:47:46 by pleoma           ###   ########.fr       */
+/*   Updated: 2022/02/21 18:07:58 by pleoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	parent_process(char **argv, char **envp, int *fd)
 }
 
 int	main(int argc, char **argv, char **envp)
-{	
+{
 	int		fd[2];
 	pid_t	pid;
 
