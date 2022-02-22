@@ -88,18 +88,19 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	coun;
+char	*ft_strchr(const char *str, int ch)
+{	
+	unsigned char	coun;
 
 	coun = 0;
-	if ((int)size == 0)
-		return (ft_strlen((char *)src));
-	while ((src[coun] != '\0') && (coun < size - 1))
+	while (str[coun] != '\0')
 	{
-		dst[coun] = src[coun];
-		coun++;
+		if (str[coun] == (unsigned char)ch)
+			return ((char *)str + coun);
+		else
+			coun++;
 	}
-	dst[coun] = '\0';
-	return (ft_strlen((char *)src));
+	if (str[coun] == (unsigned char)ch)
+		return ((char *)str + coun);
+	return (NULL);
 }
